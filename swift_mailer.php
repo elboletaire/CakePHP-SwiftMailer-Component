@@ -33,6 +33,13 @@ class SwiftMailerComponent extends EmailComponent
 
 	public function _attachFiles()
 	{
+		$parts = $this->message->getChildren();
+
+		foreach ($parts as $part)
+		{
+			$this->message->detach($part);
+		}
+
 		if (is_array($this->attachments))
 		{
 			foreach ($this->attachments as $attach)
