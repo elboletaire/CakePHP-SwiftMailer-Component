@@ -2,14 +2,14 @@
 
 An extension of the [CakePHP's EmailComponent](http://book.cakephp.org/1.3/en/view/1283/Email) using SwiftMailer as sending engine.
 
-You can use swiftmailer as easy as CakePHP's Email Component =)
+You can use swiftmailer as easily as CakePHP's Email Component =)
 
 
 ## Install
 
 First [you will need to download SwiftMailer](http://swiftmailer.org/download) if you have not downloaded it yet.
 
-Decompress the folder "lib" inside your app/vendors folder and then change it's name to "swiftmailer".
+Decompress the folder "lib" inside your app/vendors folder and then change its name to "swiftmailer".
 
 Copy the swift_mailer.php file to app/controllers/components and then load the component as normally loaded. Check out [the official documentation for more details](http://book.cakephp.org/1.3/en/view/1284/Class-Attributes-and-Variables).
 
