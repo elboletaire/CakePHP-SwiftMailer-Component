@@ -28,9 +28,9 @@ Here you have how shoud it be:
 
 Now, if you were using default's CakePHP component you will need to change all your `$this->Email->` to `$this->SwiftMailer->` and everything else should work as using the default EmailComponent.
 
-Otherwise, configure the component as specified in CakePHP's EmailComponent documentation and create your templates/views.
+Configure the component as specified in CakePHP's EmailComponent documentation and create your templates/views.
 
-Don't forget to configure the sendtype options (`$this->SwiftMailer->smtpOptions` if necessary).
+Don't forget to configure the sendtype options (`$this->SwiftMailer->smtpOptions`) if necessary.
 
 ## Changes from original EmailComponent
 
