@@ -2,6 +2,7 @@
 /**
  *
  * @author Òscar Casajuana Alonso <elboletaire@underave.net>
+ * @version 1.1 [Oct 20, 2012]
  * @version 1.0 [Mar 11, 2012]
  * @version 0.2 [Jan 03, 2012]
  *
