@@ -375,17 +375,17 @@ class SwiftMailerComponent extends EmailComponent
 
 	public function addCc($email, $name = null)
 	{
-		return call_user_func_array(array($this->message, 'addCc'), array($email, $name));
+		return $this->message->addCc($email, $name);
 	}
 
 	public function addBcc($email, $name = null)
 	{
-		return call_user_func_array(array($this->message, 'addBcc'), array($email, $name));
+		return $this->message->addBcc($email, $name);
 	}
 
 	public function addTo($email, $name = null)
 	{
-		return call_user_func_array(array($this->message, 'addTo'), array($email, $name));
+		return $this->message->addTo($email, $name);
 	}
 
 	/**
