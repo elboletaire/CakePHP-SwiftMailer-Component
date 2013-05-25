@@ -2,7 +2,7 @@
 /**
  *
  * @author Òscar Casajuana Alonso <elboletaire@underave.net>
- * @version 1.2 [Mai 25, 2013]
+ * @version 1.3 [Mai 25, 2013]
  * @version 1.1 [Oct 20, 2012]
  * @version 1.0 [Mar 11, 2012]
  * @version 0.2 [Jan 03, 2012]
@@ -228,6 +228,13 @@ class SwiftMailerComponent extends EmailComponent
 		{
 			try
 			{
+				// Check for ssl/tls on the host
+				$schema = $this->extractSchema($this->smtpOptions['host']);
+				if ($schema)
+				{
+					$this->smtpOptions['encryption'] = $schema;
+				}
+
 				$this->transport = Swift_SmtpTransport::newInstance(
 					$this->smtpOptions['host'],
 					$this->smtpOptions['port'],
@@ -247,6 +254,25 @@ class SwiftMailerComponent extends EmailComponent
 	}
 
 	// METHODS CREATED SPECIALLY FOR SWIFTMAILER USAGE
+
+	/**
+	 * Extracts the encryption type from the host url (ie. tls://smtp.gmail.com)
+	 * 
+	 * @param  string $host The host string.
+	 * @return mixed        False if no schema matched. Otherwise, an string with the encryption extracted will be returned.
+	 */
+	private function extractSchema(&$host)
+	{
+		$regexp = '^(ssl|tls):\/\/(.+)';
+		if (!preg_match("/$regexp/", $host, $matches))
+		{
+			return false;
+		}
+
+		$host = array_pop($matches);
+
+		return array_pop($matches);
+	}
 	/**
 	 * Sends out email via SMTP using ssl encryption
 	 *
