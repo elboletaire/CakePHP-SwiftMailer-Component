@@ -2,6 +2,7 @@
 /**
  *
  * @author Òscar Casajuana Alonso <elboletaire@underave.net>
+ * @version 1.2 [Mai 25, 2013]
  * @version 1.1 [Oct 20, 2012]
  * @version 1.0 [Mar 11, 2012]
  * @version 0.2 [Jan 03, 2012]
@@ -368,9 +369,14 @@ class SwiftMailerComponent extends EmailComponent
 		}
 
 		// Body
-		$this->message->setBody(implode("\n", $this->__message), $this->getContentType($this->sendAs));
+		if ($this->sendAs == 'text') {
+			$this->message->setBody($this->textMessage, $this->getContentType($this->sendAs));
+		} else {
+			// If both or html..
+			$this->message->setBody(implode("\n", $this->__message), $this->getContentType($this->sendAs));
+		}
 		if ($this->sendAs == 'both') {
-			$this->message->addPart(implode("\n", $this->__message), 'text/plain');
+			$this->message->addPart($this->textMessage, 'text/plain');
 		}
 	}
 
