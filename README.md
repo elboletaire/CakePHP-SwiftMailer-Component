@@ -37,7 +37,18 @@ Don't forget to configure the sendtype options (`$this->SwiftMailer->smtpOptions
 As I said, this component tries to use the default CakePHP's EmailComponent logic. There are only a few things you maybe would know:
 
 * There are three public methods that doesn't exist in the original component: `addTo`, `addCc` and `addBcc`, This methods work the same way they do in SwiftMailer.
-* If you want to use SSL/TLS connections over SMTP you can do it by two ways: setting it as `sslsmtp` or `tlssmtp` in the `delivery` option or you can also use `smtp` as delivery method and then specify `ssl` or `tls` as `encryption` value.
+* If you want to use SSL/TLS connections over SMTP you can do it by three ways: adding `ssl://` or `tls://` in front of smtp host setting (like in CakePHP Component); setting it as `sslsmtp` or `tlssmtp` in the `delivery` option; or you can also use `smtp` as delivery method and then specify `ssl` or `tls` as `encryption` value.
+
+## Changelog
+
+* **[v 1.2 & 1.3]** Mai 25, 2013
+  * **New:** Added method to extract encryption from host (eg. `ssl` from `ssl://smtp.gmail.com` or `tls` from `tls://smtp.gmail.com`)
+  * **Fixed:** text e-mails being sent as html e-mails
+
+* **[v 1.1]** Oct 20, 2012
+  * Minor bugfixes
+* **[v 1.0]** Jan 3, 2012
+  * First stable version (port from the non-published 1.2 version)
 
 ## LICENSE
 
