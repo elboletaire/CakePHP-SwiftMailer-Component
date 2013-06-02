@@ -40,12 +40,12 @@ class SwiftMailerComponent extends EmailComponent
 		{
 			foreach ($this->attachments as $attach)
 			{
-				$this->message->attach(Swift_Attachment::fromPath($attach));
+				$this->message->attach(Swift_Attachment::fromPath($this->_findFiles($attach)));
 			}
 		}
 		else
 		{
-			$this->message->attach(Swift_Attachment::fromPath($this->attachments));
+			$this->message->attach(Swift_Attachment::fromPath($this->_findFiles($attachments)));
 		}
 	}
 
@@ -110,12 +110,6 @@ class SwiftMailerComponent extends EmailComponent
 	 */
 	public function reset()
 	{
-		$parts = $this->message->getChildren();
-		foreach ($parts as $part)
-		{
-			$this->message->detach($part);
-		}
-
 		$this->transport = null;
 		$this->message = null;
 		$this->mailer = null;
