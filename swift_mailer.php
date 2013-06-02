@@ -2,6 +2,7 @@
 /**
  *
  * @author Òscar Casajuana Alonso <elboletaire@underave.net>
+ * @version 1.4 [Jun 02, 2013]
  * @version 1.3 [Mai 25, 2013]
  * @version 1.1 [Oct 20, 2012]
  * @version 1.0 [Mar 11, 2012]
@@ -35,13 +36,6 @@ class SwiftMailerComponent extends EmailComponent
 
 	public function _attachFiles()
 	{
-		$parts = $this->message->getChildren();
-
-		foreach ($parts as $part)
-		{
-			$this->message->detach($part);
-		}
-
 		if (is_array($this->attachments))
 		{
 			foreach ($this->attachments as $attach)
@@ -116,6 +110,12 @@ class SwiftMailerComponent extends EmailComponent
 	 */
 	public function reset()
 	{
+		$parts = $this->message->getChildren();
+		foreach ($parts as $part)
+		{
+			$this->message->detach($part);
+		}
+
 		$this->transport = null;
 		$this->message = null;
 		$this->mailer = null;
@@ -339,7 +339,6 @@ class SwiftMailerComponent extends EmailComponent
 		try
 		{
 			$this->mailer->send($this->message);
-			$this->log('Success', 'email_success');
 			return true;
 		}
 		catch(Swift_ConnectionException $e)
